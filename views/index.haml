@@ -1,0 +1,15 @@
+!!!5
+%head
+  %title Stamp : Ruby Strftime parser
+  %script{src:"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"}
+  %script{src:"/application.js"}
+  %link{src:"/style.css"}
+%body
+  %h1 Stamp : Ruby Strftime Parset
+  %form{action:"/convert", method:"post"}
+    %label{for:"time"} Enter any date
+    %input{type:"text", name:"time"}
+    %button Submit
+  
+  - if @stamp
+    .result= @stamp
