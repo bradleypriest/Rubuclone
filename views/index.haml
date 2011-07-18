@@ -5,11 +5,14 @@
   %script{src:"/application.js"}
   %link{src:"/style.css"}
 %body
-  %h1 Stamp : Ruby Strftime Parset
+  %h1 Stamp
+  %h2 Ruby Strftime Parser
   %form{action:"/convert", method:"post"}
-    %label{for:"time"} Enter any date
+    %label{for:"time"} Enter any date e.g 12 March 2010
     %input{type:"text", name:"time"}
     %button Submit
   
   - if @stamp
-    .result= @stamp
+    .result
+      Strftime:
+      = @stamp
