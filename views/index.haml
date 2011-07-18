@@ -3,16 +3,19 @@
   %title Stamp : Ruby Strftime parser
   %script{src:"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"}
   %script{src:"/application.js"}
-  %link{src:"/style.css"}
+  %link{href:"/style.css",type:"text/css",rel:"stylesheet"}
 %body
-  %h1 Stamp
-  %h2 Ruby Strftime Parser
-  %form{action:"/convert", method:"post"}
-    %label{for:"time"} Enter any date e.g 12 March 2010
-    %input{type:"text", name:"time"}
-    %button Submit
+  #container
+    %header
+      %h1 Stamp
+      %h2 Ruby Strftime Parser
+    %section
+      %form{action:"/convert", method:"post"}
+        %label{for:"time"} Enter any date e.g 12 March 2010
+        %input{type:"text", name:"time"}
+        %button Submit
   
-  - if @stamp
-    .result
-      Strftime:
-      = @stamp
+      - if @stamp
+        #result
+          Strftime:
+          = @stamp
