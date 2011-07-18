@@ -2,7 +2,7 @@ require 'sinatra'
 require 'haml'
 require 'stamp'
 require 'sass'
-require 'coffee-script'
+#require 'coffee-script'
 
 set :haml, :format => :html5
 
@@ -19,6 +19,6 @@ get '/style.css' do
   scss :style
 end
 
-get '/application.js' do
-  coffee :application
-end
+# get '/application.js' do
+#   coffee :application
+# end
