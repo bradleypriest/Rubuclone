@@ -11,11 +11,18 @@
       %h2 Ruby Strftime Parser
     %section
       %form{action:"/convert", method:"post"}
-        %label{for:"time"} Enter any date e.g 12 March 2010
-        %input{type:"text", name:"time"}
-        %button Submit
-  
+        %label{for:"time"} What do you want your date to look like?
+        %input{type:"text", name:"time",value:params[:time] }
+
       - if @stamp
         #result
-          Strftime:
-          = @stamp
+          .stamp= @stamp
+
+    %footer
+      %p
+        Built by Bradley Priest
+        %a{href:'http://twitter.com/bradleypriest'}
+          @bradleypriest
+      %p
+        Check out the code on
+        = link_to "Github", "http://github.com/bradleypriest/stamp-rb.heroku.com"
