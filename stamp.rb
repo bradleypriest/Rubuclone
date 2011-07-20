@@ -5,13 +5,20 @@ require 'sass'
 
 set :haml, :format => :html5
 
-get '/' do
+def any(url, verbs = %w(get post put delete), &block)
+  verbs.each do |verb|
+    send(verb, url, &block)
+  end
+end
+
+any '/' do
+  @stamp = Stamp.strftime_format(params[:time]) if params[:time]
   haml :index
 end
 
-post '/' do
-  @stamp = Stamp.strftime_format(params[:time])
-  haml :index
+post '/convert.json' do
+  response['Content-Type'] = 'application/json'
+  "{\"stamp\": \"#{Stamp.strftime_format(params[:time])}\", \"time\":\"#{params[:time]}\"}"
 end
 
 get '/style.css' do

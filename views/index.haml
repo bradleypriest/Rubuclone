@@ -10,13 +10,15 @@
       %h1 Stamp
       %h2 Ruby Strftime Generator
     %section
-      %form{action:"/", method:"post"}
+      %form{action:"/convert.json", method:"post"}
         %label{for:"time"} What do you want your date output to look like?
-        %input{type:"text", name:"time",value:params[:time] }
-        %p e.g. 12:00pm April 19, 2011
-      - if @stamp
-        #result
-          .stamp= @stamp
+        %input#time{type:"text", name:"time",value:params[:time] }
+        %p.example
+          e.g.
+          %a{href:"/?time=12:00pm+April+19,+2011"} 12:00pm April 19, 2011
+
+      #result
+        .stamp= @stamp
 
     %footer
       %p
