@@ -1,4 +1,5 @@
-$bg: #212625;
+$bg: white;
+$dark: #212625;
 $colour: #D0D9D6;
 $highlight: #BF0404;
 body{
@@ -14,22 +15,24 @@ header{
   text-align:center;
   h1{
     font-size:60px;
-    margin:10px auto;
+    margin:10px auto 0;
   }
   h2{
+    margin:0 auto 20px;
   }
 }
 section{
   margin:auto;
   width:800px;
-  height:250px;
+  height:200px;
   padding:40px;
-  background-color:lighten($bg, 12%);
-  border:20px solid lighten($bg, 70%);
+  background-color:darken($bg, 70%);
+  border:20px solid darken($bg, 30%);
   color:$colour;
   form{
     label{
       display:block;
+      font-size:24px;
     }
     input{
       margin-top:10px;
@@ -38,6 +41,7 @@ section{
       height:1.2em;
       box-shadow:0 0 1px #777;
       border-radius: 3px;
+      background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
     }
   }
   .example{
@@ -48,17 +52,20 @@ section{
       }
     }
   }
+  .stamp{
+    text-align:center;
+  }
 }
 #result{
   color:$colour;
-  font-size:40px;
-  padding:30px 0;
+  font-size:45px;
+  padding:20px 0;
 }
 footer{
   margin:20px auto;
   text-align:center;
-  color:darken($colour, 10%);
-  text-shadow:0 0 1px darken($colour, 50%);
+  color:darken($colour, 25%);
+  text-shadow:1px 1px 0px lighten($colour, 10%);
   a{
     color:$highlight;
     &:hover{
