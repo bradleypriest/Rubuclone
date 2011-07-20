@@ -26,9 +26,9 @@ section{
   padding:40px;
   background-color:lighten($bg, 12%);
   border:20px solid lighten($bg, 70%);
+  color:$colour;
   form{
     label{
-      color:$colour;
       display:block;
     }
     input{
@@ -38,6 +38,11 @@ section{
       height:1.2em;
       box-shadow:0 0 1px #777;
       border-radius: 3px;
+    }
+  }
+  .example{
+    a{
+      color:#1B97F2;
     }
   }
 }
