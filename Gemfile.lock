@@ -6,6 +6,7 @@ GEM
       execjs
     coffee-script-source (1.1.1)
     configuration (1.3.1)
+    diff-lcs (1.1.3)
     execjs (1.2.0)
       multi_json (~> 1.0)
     haml (3.1.2)
@@ -22,6 +23,14 @@ GEM
     rake (0.8.7)
     rest-client (1.6.3)
       mime-types (>= 1.16)
+    rspec (2.8.0)
+      rspec-core (~> 2.8.0)
+      rspec-expectations (~> 2.8.0)
+      rspec-mocks (~> 2.8.0)
+    rspec-core (2.8.0)
+    rspec-expectations (2.8.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.8.0)
     sass (3.1.4)
     sinatra (1.2.6)
       rack (~> 1.1)
@@ -37,6 +46,7 @@ DEPENDENCIES
   coffee-script
   haml
   heroku
+  rspec
   sass
   sinatra
   stamp

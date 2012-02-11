@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'haml'
-require 'stamp'
 require 'sass'
+require './parser'
 
 set :haml, :format => :html5
 
@@ -19,7 +19,7 @@ end
 post '/convert.json' do
   process_regex
   response['Content-Type'] = 'application/json'
-  "{\"result\":\"#{escape_javascript(@result)}\"}"
+  "{\"result\":\"#{escape_javascript(@result)}\",\"matches\":\"#{escape_javascript(@matches.to_s)}\"}"
 end
 
 get '/style.css' do
@@ -36,20 +36,20 @@ end
 
 private
   JS_ESCAPE_MAP = {
-          '\\'    => '\\\\',
-          '</'    => '<\/',
-          "\r\n"  => '\n',
-          "\n"    => '\n',
-          "\r"    => '\n',
-          '"'     => '\\"',
-          "'"     => "\\'" }
+    '\\'    => '\\\\',
+    '</'    => '<\/',
+    "\r\n"  => '\n',
+    "\n"    => '\n',
+    "\r"    => '\n',
+    '"'     => '\\"',
+    "'"     => "\\'"
+  }
 
   def process_regex
     if params[:regex]
-      regex = Regexp.new("("+params[:regex]+")")
-      @result = params[:string].gsub regex do
-        "<span class=\"highlight\">#{$1}</span>"
-      end
+      parser = Parser.new(params[:regex], params[:string])
+      @result = parser.highlight
+      @matches = parser.matches
     end
   end
 
