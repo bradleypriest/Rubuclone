@@ -17,7 +17,6 @@ any '/' do
 end
 
 post '/convert.json' do
-  puts params
   process_regex
   response['Content-Type'] = 'application/json'
   "{\"result\":\"#{escape_javascript(@result)}\"}"
