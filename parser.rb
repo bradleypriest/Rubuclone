@@ -6,20 +6,28 @@ class Parser
   end
 
   def highlight
-    reg_exp = Regexp.new("("+@regex+")")
-    result = @string.gsub reg_exp do
-      "<span class=\"highlight\">#{$1}</span>"
+    begin
+      reg_exp = Regexp.new("("+@regex+")")
+      result = @string.gsub reg_exp do
+        "<span class=\"highlight\">#{$1}</span>"
+      end
+      result
+    rescue RegexpError => e
+      "<span class=\"alert-error\">Error: #{e.message}</span>"
     end
-    result
   end
 
   def matches
-    reg_exp = Regexp.new(@regex)
-    matches = []
-    @string.gsub reg_exp do
-     matches << $1
+    begin
+      reg_exp = Regexp.new(@regex)
+      matches = []
+      @string.gsub reg_exp do
+       matches << $1
+      end
+      matches
+    rescue
+      []
     end
-    matches
   end
 
 end
