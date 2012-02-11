@@ -12,13 +12,15 @@ def any(url, verbs = %w(get post put delete), &block)
 end
 
 any '/' do
-  @stamp = Stamp.strftime_format(params[:time]) if params[:time]
+  process_regex
   haml :index
 end
 
 post '/convert.json' do
+  puts params
+  process_regex
   response['Content-Type'] = 'application/json'
-  "{\"stamp\": \"#{Stamp.strftime_format(params[:time])}\", \"time\":\"#{params[:time]}\"}"
+  "{\"result\":\"#{escape_javascript(@result)}\"}"
 end
 
 get '/style.css' do
@@ -31,3 +33,27 @@ configure :development do
     coffee :application
   end
 end
+
+
+private
+  JS_ESCAPE_MAP = {
+          '\\'    => '\\\\',
+          '</'    => '<\/',
+          "\r\n"  => '\n',
+          "\n"    => '\n',
+          "\r"    => '\n',
+          '"'     => '\\"',
+          "'"     => "\\'" }
+
+  def process_regex
+    if params[:regex]
+      regex = Regexp.new("("+params[:regex]+")")
+      @result = params[:string].gsub regex do
+        "<span class=\"highlight\">#{$1}</span>"
+      end
+    end
+  end
+
+  def escape_javascript(javascript)
+    result = javascript.gsub(/(\\|<\/|\r\n|[\n\r"'])/) {|match| JS_ESCAPE_MAP[match] }
+  end
