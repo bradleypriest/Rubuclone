@@ -1,3 +1,3 @@
 require 'rubygems'
-require './stamp'
+require './server'
 run Sinatra::Application
