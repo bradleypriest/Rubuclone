@@ -24,7 +24,7 @@ class Parser
       @string.gsub reg_exp do
        matches << $1
       end
-      matches
+      matches.compact
     rescue
       []
     end
